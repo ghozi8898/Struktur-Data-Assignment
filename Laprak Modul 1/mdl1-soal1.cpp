@@ -9,8 +9,7 @@ int main() {
     cin >> a;
     cout << "B: ";
     cin >> b;
-
-    // Operasi aritmetika
+    
     cout << (a + b) << endl;
     cout << (a - b) << endl;
     cout << (a * b) << endl;
