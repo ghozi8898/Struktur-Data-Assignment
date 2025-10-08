@@ -19,7 +19,7 @@ int main() {
 
     current = new saham;
     current ->nama_emiten = "PIBA";
-    last ->next=current;
+    last->next=current;
     last=current;
 
     current = new saham;
