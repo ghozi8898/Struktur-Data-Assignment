@@ -4,16 +4,17 @@
 ## Dasar Teori
 
 Modul ini membahas tentang Beberapa fungsi penting dalam bahasa pemograman C++ 
-Array
+
+## Array
 Array merupakan kumpulan data dengan nama yang sama dan setiap elemen bertipe data sama.
 Untuk mengakses setiap komponen / elemen array berdasarkan indeks dari setiap elemen.
 
-Pointer
+## Pointer
 Variabel pointer merupakan dasar tipe variabel yang berisi integer dalam format heksadesimal. Pointer
 digunakan untuk menyimpan alamat memori variabel lain sehingga pointer dapat mengakses nilai dari
 variabel yang alamatnya ditunjuk.
 
-Prosedur
+## Prosedur
 Dalam bahasa pemrograman C++, prosedur adalah istilah yang sering digunakan untuk merujuk pada
 fungsi yang tidak mengembalikan nilai. Dalam istilah C++, prosedur ini dikenal sebagai fungsi void.
 Fungsi-fungsi ini melakukan tugas tertentu tetapi tidak memberikan nilai balik (return value) kepada
