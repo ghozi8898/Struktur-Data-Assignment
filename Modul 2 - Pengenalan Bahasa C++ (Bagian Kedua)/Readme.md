@@ -3,7 +3,24 @@
 
 ## Dasar Teori
 
-Berikan penjelasan teori terkait materi modul ini dengan bahasa anda sendiri serta susunan yang terstruktur per topiknya.
+Modul ini membahas tentang Beberapa fungsi penting dalam bahasa pemograman C++ 
+Array
+Array merupakan kumpulan data dengan nama yang sama dan setiap elemen bertipe data sama.
+Untuk mengakses setiap komponen / elemen array berdasarkan indeks dari setiap elemen.
+
+Pointer
+Variabel pointer merupakan dasar tipe variabel yang berisi integer dalam format heksadesimal. Pointer
+digunakan untuk menyimpan alamat memori variabel lain sehingga pointer dapat mengakses nilai dari
+variabel yang alamatnya ditunjuk.
+
+Prosedur
+Dalam bahasa pemrograman C++, prosedur adalah istilah yang sering digunakan untuk merujuk pada
+fungsi yang tidak mengembalikan nilai. Dalam istilah C++, prosedur ini dikenal sebagai fungsi void.
+Fungsi-fungsi ini melakukan tugas tertentu tetapi tidak memberikan nilai balik (return value) kepada
+pemanggilnya. Sebaliknya, fungsi yang mengembalikan nilai, seperti int atau double, memberikan
+hasil yang dapat digunakan lebih lanjut dalam program.
+
+
 
 ## Guided 
 
@@ -53,6 +70,40 @@ int main() {
 }
 ```
 Kode di atas digunakan untuk mencetak teks "ini adalah file code guided praktikan" ke layar menggunakan function cout untuk mengeksekusi nya.
+
+### 1. [Pointer]
+
+```C++
+#include <iostream>
+using namespace std;
+
+void tukar(int *x, int *y) {
+    int temp;
+    temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+main () {
+    int a = 20, b = 30;
+    int *ptr;
+
+    ptr = &a;
+
+    cout << "Value a : " << a << endl;
+    cout << "Address a : " << &a << endl;
+    cout << "Value stored in otr (address of a) : " << ptr << endl;
+    cout << "Value pointed to by ptr: " << *ptr << endl;
+
+
+tukar(&a, &b);
+cout << "After swapping, value of a : " << a << " and b=" << b << endl;
+
+return 0;
+}
+```
+Kode di atas digunakan untuk mencetak teks "ini adalah file code guided praktikan" ke layar menggunakan function cout untuk mengeksekusi nya.
+
 
 ## Unguided 
 
