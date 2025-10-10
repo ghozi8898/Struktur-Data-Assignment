@@ -164,8 +164,9 @@ int main() {
 
     return 0;
 }
-
 ```
+Kode diatas adalah program yang dapat menjumlahkan, mengurangkan, dan mengalikan dua buah Matriks 3x3, dengan perulangan.
+
 #### Output:
 <img width="1600" height="690" alt="image" src="https://github.com/user-attachments/assets/8f5c3799-6338-4771-ac47-a9df9faafd20" />
 
