@@ -1,5 +1,5 @@
 # <h1 align="center">Laporan Praktikum Modul Pengenalan Bahasa C++ (1)</h1>
-<p align="center">Arvinanto Bahtiar</p>
+<p align="center">Muhammad Fathir Al Ghozi</p>
 
 ## Dasar Teori
 
@@ -70,7 +70,7 @@ int main() {
     return 0;
 }
 ```
-Kode di atas digunakan untuk mencetak teks "ini adalah file code guided praktikan" ke layar menggunakan function cout untuk mengeksekusi nya.
+
 
 ### 1. [Pointer]
 
@@ -103,7 +103,7 @@ cout << "After swapping, value of a : " << a << " and b=" << b << endl;
 return 0;
 }
 ```
-Kode di atas digunakan untuk mencetak teks "ini adalah file code guided praktikan" ke layar menggunakan function cout untuk mengeksekusi nya.
+
 
 
 ## Unguided 
@@ -167,17 +167,193 @@ int main() {
 ```
 Kode diatas adalah program yang dapat menjumlahkan, mengurangkan, dan mengalikan dua buah Matriks 3x3, dengan perulangan.
 
+#### Output
+<img width="1424" height="592" alt="image" src="https://github.com/user-attachments/assets/94f5953a-154f-4a50-b5f6-d5a0a8a91b2f" />
+
+#### Full Screenshot
+<img width="1919" height="1017" alt="image" src="https://github.com/user-attachments/assets/a947e717-f639-4931-8141-d3f1ff376506" />
+
+
+### 2.  [Berdasarkan guided pointer dan reference sebelumnya, buatlah keduanya dapat menukar nilai dari 3 variabel]
+
+## Pointer
+
+```C++
+#include <iostream>
+using namespace std;
+
+void tukar3(int *x, int *y, int *z) {
+    int temp = *x;    
+    *x = *y;          
+    *y = *z;          
+    *z = temp;       
+}
+
+int main () {
+    int a = 20, b = 30, c = 40;
+    int *ptr;
+
+    ptr = &a;
+
+    cout << "Sebelum ditukar:" << endl;
+    cout << "a = " << a << ", b = " << b << ", c = " << c << endl;
+
+    cout << "\nValue a : " << a << endl;
+    cout << "Address a : " << &a << endl;
+    cout << "Value stored in ptr (address of a) : " << ptr << endl;
+    cout << "Value pointed to by ptr: " << *ptr << endl;
+
+    tukar3(&a, &b, &c);
+
+    cout << "\nSetelah ditukar:" << endl;
+    cout << "a = " << a << ", b = " << b << ", c = " << c << endl;
+
+    return 0;
+}
+
+```
+Kode diatas adalah program dari pointer sebelumnya pada guided dan dimodifikasi agar bisa menukar dengan 3 variabel yang sebelumnya menggunakan 2 variabel.
+
 #### Output:
-<img width="1600" height="690" alt="image" src="https://github.com/user-attachments/assets/8f5c3799-6338-4771-ac47-a9df9faafd20" />
+<img width="1332" height="390" alt="image" src="https://github.com/user-attachments/assets/557e2c50-6833-433d-8278-45724036eee8" />
 
 
 #### Full code Screenshot:
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/d6a6325d-2673-4baf-bab7-2b25af1df451" />
+<img width="1919" height="1020" alt="image" src="https://github.com/user-attachments/assets/0dd8f45c-1a97-447a-aca1-893cfc125d71" />
 
 
+## Reference
+```C++
+#include <iostream>
+using namespace std;
+
+void tukar3(int &x, int &y, int &z) {
+    int temp = x;  
+    x = y;         
+    y = z;          
+    z = temp;      
+}
+
+int main() {
+    int a = 20, b = 30, c = 40;
+    int& ref = a; 
+
+    cout << "Sebelum ditukar:" << endl;
+    cout << "a = " << a << ", b = " << b << ", c = " << c << endl;
+    cout << "Nilai ref (alias a): " << ref << endl;
+    cout << "Alamat a (&a) : " << &a << endl;
+    cout << "Alamat ref (&ref): " << &ref << endl;
+
+    ref = 50;
+    cout << "\nSetelah ref = 50:" << endl;
+    cout << "a = " << a << ", ref = " << ref << endl;
+
+    tukar3(a, b, c);
+
+    cout << "\nSetelah tukar3 dipanggil:" << endl;
+    cout << "a = " << a << ", b = " << b << ", c = " << c << endl;
+
+    return 0;
+}
+```
+Sama dengan code sebelumnya memodifikasi dari codingan Guided sebelumnya agar bisa menukar nilai dari 3 variabel
+
+#### Output
+<img width="1425" height="317" alt="image" src="https://github.com/user-attachments/assets/19477cbc-d319-4d66-ada1-1d319b85c88c" />
+
+#### Full screenshot
+<img width="1919" height="1015" alt="image" src="https://github.com/user-attachments/assets/b2ceab4a-5be0-43d8-b13f-f82b04de565a" />
+
+
+
+
+### 3. [Buatlah program yang dapat melakukan operasi penjumlahan, pengurangan, dan perkalian matriks 3x3]
+
+```C++
+#include <iostream>
+using namespace std;
+
+int cariMinimum(int arr[], int n) {
+    int min = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+    return min;
+}
+
+int cariMaksimum(int arr[], int n) {
+    int maks = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > maks) {
+            maks = arr[i];
+        }
+    }
+    return maks;
+}
+
+float hitungRataRata(int arr[], int n) {
+    int jumlah = 0;
+    for (int i = 0; i < n; i++) {
+        jumlah += arr[i];
+    }
+    return (float)jumlah / n; 
+}
+
+int main() {
+    int arrA[10] = {11, 8, 5, 7, 12, 26, 3, 54, 33, 55};
+    int n = 10;
+    int pilihan;
+
+    do {
+        cout << "\n--- Menu Program Array ---\n";
+        cout << "1. Tampilkan isi array\n";
+        cout << "2. Cari nilai maksimum\n";
+        cout << "3. Cari nilai minimum\n";
+        cout << "4. Hitung nilai rata - rata\n";
+        cout << "Pilih: ";
+        cin >> pilihan;
+
+        switch (pilihan) {
+             case 1:
+                cout << "ARRAY = {";
+                for (int i = 0; i < n; i++) {
+                    cout << arrA[i];
+                    if (i < n - 1) cout << ", ";
+                }
+                cout << "}" << endl;
+                break;
+            case 2:
+                cout << "Nilai maksimum: " << cariMaksimum(arrA, n) << endl;
+                break;
+            case 3:
+                cout << "Nilai minimum: " << cariMinimum(arrA, n) << endl;
+                break;
+            case 4:
+                cout << "Nilai rata-rata: " << hitungRataRata(arrA, n) << endl;
+                break;
+            default:
+                cout << "-";
+        }
+    } while (pilihan != 5);
+
+    return 0;
+}
+
+```
+Kode diatas adalah program aplikasi yang bisa memilih antara ke empat opsi yaitu menampilkan isi array, mencari nilai maksimum dan minimum, juga menghitung nilai rata-rata dari matriks yang ada pada soal yaitu {11, 8, 5, 7, 12, 26, 3, 54, 33, 55}.
+
+#### Output 
+<img width="1431" height="785" alt="image" src="https://github.com/user-attachments/assets/a25facc0-0aaf-42f4-a331-b76a68b3431a" />
+
+#### Full Screenshot
+<img width="1919" height="1019" alt="image" src="https://github.com/user-attachments/assets/9124b734-b661-47d5-9403-d5ba2e5c3c8b" />
+
+##
 
 ## Kesimpulan 
 Modul 2 ini membahas lanjutan dasar pemrograman C++ yang berfokus pada penggunaan variabel, pointer, dan reference. Pointer diperkenalkan sebagai cara untuk mengakses alamat memori dan memanipulasi isi variabel secara langsung, sementara reference dijelaskan sebagai alternatif yang lebih sederhana dibandingkan pointer, terutama saat digunakan dalam parameter fungsi. Materi ini dilengkapi dengan contoh-contoh program sederhana seperti pertukaran nilai variabel menggunakan pointer maupun reference, sehingga mahasiswa dapat memahami perbedaan dan kegunaannya. Pada bagian akhir, disediakan latihan soal untuk memperkuat pemahaman konsep. Secara keseluruhan, modul ini menekankan pentingnya memahami cara kerja memori di C++ agar mahasiswa mampu menulis program yang lebih efisien dan efektif.
 
 ## Referensi
-[1] I. Holm, Narrator, and J. Fullerton-Smith, Producer, How to Build a Human [DVD]. London: BBC; 2002.
+-
