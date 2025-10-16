@@ -1,354 +1,277 @@
-# <h1 align="center">Laporan Praktikum Modul Pengenalan Bahasa C++ (1)</h1>
+# <h1 align="center">Laporan Praktikum Modul Abstract Data Type (ADT) (3)</h1>
 <p align="center">Muhammad Fathir Al Ghozi</p>
 
 ## Dasar Teori
-
-Modul ini membahas tentang Beberapa fungsi penting dalam bahasa pemograman C++ 
-
-## Array
-Array merupakan kumpulan data dengan nama yang sama dan setiap elemen bertipe data sama.
-Untuk mengakses setiap komponen / elemen array berdasarkan indeks dari setiap elemen.
-
-## Pointer
-Variabel pointer merupakan dasar tipe variabel yang berisi integer dalam format heksadesimal. Pointer
-digunakan untuk menyimpan alamat memori variabel lain sehingga pointer dapat mengakses nilai dari
-variabel yang alamatnya ditunjuk.
-
-## Prosedur
-Dalam bahasa pemrograman C++, prosedur adalah istilah yang sering digunakan untuk merujuk pada
-fungsi yang tidak mengembalikan nilai. Dalam istilah C++, prosedur ini dikenal sebagai fungsi void.
-Fungsi-fungsi ini melakukan tugas tertentu tetapi tidak memberikan nilai balik (return value) kepada
-pemanggilnya. Sebaliknya, fungsi yang mengembalikan nilai, seperti int atau double, memberikan
-hasil yang dapat digunakan lebih lanjut dalam program.
-
-
+### ADT
+Abstract Data Type (ADT) adalah sebuah model konseptual atau blueprint untuk tipe data yang didefinisikan oleh perilakunya (operasi yang bisa dilakukan) dari sudut pandang pengguna, bukan oleh implementasinya (bagaimana operasi itu dijalankan).
+Abstraksi (Abstraction): Ini adalah prinsip menyembunyikan detail implementasi yang kompleks dan hanya menunjukkan fungsionalitas yang esensial kepada pengguna. ADT adalah bentuk abstraksi data. Kita fokus pada perilaku objek data tanpa terbebani oleh cara kerjanya di level rendah.
+Enkapsulasi (Encapsulation) / Information Hiding: Ini adalah mekanisme untuk membungkus data dan metode (operasi) yang bekerja pada data tersebut menjadi satu unit tunggal. ADT secara teoretis mengenkapsulasi data dan membatasi akses langsung ke dalamnya. Pengguna hanya bisa memanipulasi data melalui operasi yang telah ditentukan secara publik. Hal ini mencegah data dari kerusakan yang tidak disengaja dan menjaga integritasnya.
 
 ## Guided 
 
-### 1. [Array]
+### 1. mahasiswa.cpp 
 
 ```C++
 #include <iostream>
+#include "mahasiswa.h"
+
 using namespace std;
 
-int main() {
-    // --- Array 1 Dimensi ---
-    int arr[5] = {10, 20, 30, 40, 50};
-    cout << "Array 1 Dimensi:" << endl;
-    for (int i = 0; i < 5; i++) {
-        cout << "Element ke-" << i << ": " << arr[i] << endl;
-    }
-    cout << endl;
+void inputMhs(mahasiswa &m){
+cout << "input nama : ";
+cin >> (m).nim;
+cout << "input nilai : ";
+cin >> (m).nilai1;
+cout << "input nilai2 : ";
+cin >> (m).nilai2;
 
-    // --- Array 2 Dimensi ---
-    int arr2D[2][3] = {
-        {1, 2, 3},
-        {4, 5, 6},
-    };
-    cout << "Array 2 Dimensi:" << endl;
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 3; j++) {
-            cout << "arr2D[" << i << "][" << j << "]: " << arr2D[i][j]
-            << " ";
-        }
-        cout << endl;
-    }
-    // --- Array Multi Dimensi (3D) ---
-    int arr3D[2][2][3] = {
-        { {1, 2, 3}, {4, 5, 6} },
-        { {7, 8, 9}, {10, 11, 12} },
-    };
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
-            for (int k = 0; k < 3; k++) {
-                cout << "arr3D[" << i << "][" << j << "]["
-                << k << "]: " << arr3D[i][j][k] << endl;
-            }
-        }
-    }
+}
+float rata2(mahasiswa m){
+ return float(m.nilai1+m.nilai2)/2;
+}
+```
 
+
+### 2. mahasiswa.h
+
+```C++
+#ifndef MAHASISWA_H_INCLUDED
+#define MAHASISWA_H_INCLUDED
+
+struct mahasiswa{
+    char nim[10];
+    int nilai1, nilai2;
+
+};
+
+void inputmhs(mahasiswa &m);
+float rata2(mahasiswa m);
+#endif 
+```
+
+### 3. main.cpp
+
+```C++
+#include <iostream>
+#include "mahasiswa.h"
+using namespace std;
+
+int main(){
+    mahasiswa mhs;
+    inputmhs(mhs);
+    cout << "rata-rata: " << rata2(mhs);
     return 0;
 }
 ```
-
-
-### 1. [Pointer]
-
-```C++
-#include <iostream>
-using namespace std;
-
-void tukar(int *x, int *y) {
-    int temp;
-    temp = *x;
-    *x = *y;
-    *y = temp;
-}
-
-main () {
-    int a = 20, b = 30;
-    int *ptr;
-
-    ptr = &a;
-
-    cout << "Value a : " << a << endl;
-    cout << "Address a : " << &a << endl;
-    cout << "Value stored in otr (address of a) : " << ptr << endl;
-    cout << "Value pointed to by ptr: " << *ptr << endl;
-
-
-tukar(&a, &b);
-cout << "After swapping, value of a : " << a << " and b=" << b << endl;
-
-return 0;
-}
-```
-
 
 
 ## Unguided 
 
-### 1. [Buatlah program yang dapat melakukan operasi penjumlahan, pengurangan, dan perkalian matriks 3x3]
+### 1. Buat program yang dapat menyimpan data mahasiswa (max. 10) ke dalam sebuah array dengan field nama, nim, uts, uas, tugas, dan nilai akhir. Nilai akhir diperoleh dari FUNGSI dengan rumus 0.3*uts+0.4*uas+0.3*tugas.
+
 
 ```C++
 #include <iostream>
 using namespace std;
+
+struct Mahasiswa {
+    string nama;
+    string nim;
+    float uts, uas, tugas, nilaiAkhir;
+};
+
+float hitungNilaiAkhir(float uts, float uas, float tugas) {
+    return (0.3 * uts) + (0.4 * uas) + (0.3 * tugas);
+}
 
 int main() {
-    int A[3][3], B[3][3], C[3][3];
-    int i, j, k;
+    Mahasiswa mhs[10];
+    int n;
 
-    cout << "Masukkan elemen matriks A (3x3):\n";
-    for(i = 0; i < 3; i++) {
-        for(j = 0; j < 3; j++) {
-            cin >> A[i][j];
-        }
+    cout << "Masukkan jumlah mahasiswa (maks 10): ";
+    cin >> n;
+    if (n > 10) n = 10;
+
+    for (int i = 0; i < n; i++) {
+        cout << "\nData mahasiswa ke-" << i + 1 << endl;
+        cout << "Nama   : ";
+        cin >> mhs[i].nama; 
+        cout << "NIM    : ";
+        cin >> mhs[i].nim;
+        cout << "UTS    : ";
+        cin >> mhs[i].uts;
+        cout << "UAS    : ";
+        cin >> mhs[i].uas;
+        cout << "Tugas  : ";
+        cin >> mhs[i].tugas;
+
+        mhs[i].nilaiAkhir = hitungNilaiAkhir(mhs[i].uts, mhs[i].uas, mhs[i].tugas);
     }
-
-    cout << "Masukkan elemen matriks B (3x3):\n";
-    for(i = 0; i < 3; i++) {
-        for(j = 0; j < 3; j++) {
-            cin >> B[i][j];
-        }
-    }
-
-    cout << "\nPenjumlahan :\n";
-    for(i = 0; i < 3; i++) {
-        for(j = 0; j < 3; j++) {
-            C[i][j] = A[i][j] + B[i][j];
-            cout << C[i][j] << " ";
-        }
-        cout << endl;
-    }
-
-    cout << "\nPengurangan :\n";
-    for(i = 0; i < 3; i++) {
-        for(j = 0; j < 3; j++) {
-            C[i][j] = A[i][j] - B[i][j];
-            cout << C[i][j] << " ";
-        }
-        cout << endl;
-    }
-
-    cout << "\nPerkalian :\n";
-    for(i = 0; i < 3; i++) {
-        for(j = 0; j < 3; j++) {
-            C[i][j] = 0;
-            for(k = 0; k < 3; k++) {
-                C[i][j] += A[i][k] * B[k][j];
-            }
-            cout << C[i][j] << " ";
-        }
-        cout << endl;
+    
+    for (int i = 0; i < n; i++) {
+        cout << i + 1 << "\t" << mhs[i].nim << "\t" << mhs[i].nama 
+             << "\t\t" << mhs[i].nilaiAkhir << endl;
     }
 
     return 0;
 }
 ```
-Kode diatas adalah program yang dapat menjumlahkan, mengurangkan, dan mengalikan dua buah Matriks 3x3, dengan perulangan.
+Kode diatas adalah program yang dapat digunakan untuk menghitung nilai rata rata dari data mahasiswa maks 10, dengan cara perulangan dan array yang menyimpan nim, nama, uts, uas, dan nilai akhir dengan ketentuan 0.3*uts+0.4*uas+0.3*tugas.
 
 #### Output
-<img width="1424" height="592" alt="image" src="https://github.com/user-attachments/assets/94f5953a-154f-4a50-b5f6-d5a0a8a91b2f" />
+<img width="533" height="407" alt="image" src="https://github.com/user-attachments/assets/bc16b72b-1963-48a1-bcd1-263b0357c1df" />
+
 
 #### Full Screenshot
-<img width="1919" height="1017" alt="image" src="https://github.com/user-attachments/assets/a947e717-f639-4931-8141-d3f1ff376506" />
+<img width="1919" height="1020" alt="image" src="https://github.com/user-attachments/assets/ecafa166-8b4c-47df-97c0-b094f94ab791" />
 
 
-### 2.  [Berdasarkan guided pointer dan reference sebelumnya, buatlah keduanya dapat menukar nilai dari 3 variabel]
 
-## Pointer
+### 2. Buat data ADT
+
+### pelajaran.cpp
 
 ```C++
+#include "pelajaran.h"
+
+pelajaran create_pelajaran(string nama, string kode) {
+    pelajaran p;
+    p.namaMapel = nama;
+    p.kodeMapel = kode;
+    return p;
+}
+
+void tampil_pelajaran(pelajaran pel) {
+    cout << "nama pelajaran : " << pel.namaMapel << endl;
+    cout << "nilai : " << pel.kodeMapel << endl;
+}
+```
+### Full Code ss
+<img width="1919" height="1018" alt="image" src="https://github.com/user-attachments/assets/cb1bb38e-7132-4aa7-89a5-0b3ee67e4160" />
+
+
+### pelajaran.h
+```C++
+#ifndef PELAJARAN_H
+#define PELAJARAN_H
 #include <iostream>
 using namespace std;
 
-void tukar3(int *x, int *y, int *z) {
-    int temp = *x;    
-    *x = *y;          
-    *y = *z;          
-    *z = temp;       
+struct pelajaran {
+    string namaMapel;
+    string kodeMapel;
+};
+
+pelajaran create_pelajaran(string nama, string kode);
+void tampil_pelajaran(pelajaran pel);
+
+#endif
+```
+### Full code ss
+<img width="1917" height="1020" alt="image" src="https://github.com/user-attachments/assets/54e68dcf-35c5-4018-afa1-83021219a28d" />
+
+
+### main.cpp
+```C++
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Pelajaran {
+    string nama;
+    string kode;
+};
+
+Pelajaran create_pelajaran(const string& nama, const string& kode) {
+    return Pelajaran{nama, kode};
 }
 
-int main () {
-    int a = 20, b = 30, c = 40;
-    int *ptr;
+void tampil_pelajaran(const Pelajaran& p) {
+    cout << "Nama: " << p.nama << "\nKode: " << p.kode << '\n';
+}
 
-    ptr = &a;
+int main() {
+    string namapel = "Struktur Data";
+    string kodepel = "STD";
 
-    cout << "Sebelum ditukar:" << endl;
-    cout << "a = " << a << ", b = " << b << ", c = " << c << endl;
-
-    cout << "\nValue a : " << a << endl;
-    cout << "Address a : " << &a << endl;
-    cout << "Value stored in ptr (address of a) : " << ptr << endl;
-    cout << "Value pointed to by ptr: " << *ptr << endl;
-
-    tukar3(&a, &b, &c);
-
-    cout << "\nSetelah ditukar:" << endl;
-    cout << "a = " << a << ", b = " << b << ", c = " << c << endl;
+    auto pel = create_pelajaran(namapel, kodepel);
+    tampil_pelajaran(pel);
 
     return 0;
 }
-
 ```
-Kode diatas adalah program dari pointer sebelumnya pada guided dan dimodifikasi agar bisa menukar dengan 3 variabel yang sebelumnya menggunakan 2 variabel.
+Kode diatas adalah program ADT yang memiliki 3 file yang saling ber relasi .
 
 #### Output:
-<img width="1332" height="390" alt="image" src="https://github.com/user-attachments/assets/557e2c50-6833-433d-8278-45724036eee8" />
-
+<img width="835" height="163" alt="image" src="https://github.com/user-attachments/assets/a19c2919-91ab-4d66-82c0-6d70c658a5b8" />
 
 #### Full code Screenshot:
-<img width="1919" height="1020" alt="image" src="https://github.com/user-attachments/assets/0dd8f45c-1a97-447a-aca1-893cfc125d71" />
+<img width="1919" height="1020" alt="image" src="https://github.com/user-attachments/assets/7193da2c-d205-4480-a14f-2fe6d771c1d1" />
 
 
-## Reference
-```C++
-#include <iostream>
-using namespace std;
-
-void tukar3(int &x, int &y, int &z) {
-    int temp = x;  
-    x = y;         
-    y = z;          
-    z = temp;      
-}
-
-int main() {
-    int a = 20, b = 30, c = 40;
-    int& ref = a; 
-
-    cout << "Sebelum ditukar:" << endl;
-    cout << "a = " << a << ", b = " << b << ", c = " << c << endl;
-    cout << "Nilai ref (alias a): " << ref << endl;
-    cout << "Alamat a (&a) : " << &a << endl;
-    cout << "Alamat ref (&ref): " << &ref << endl;
-
-    ref = 50;
-    cout << "\nSetelah ref = 50:" << endl;
-    cout << "a = " << a << ", ref = " << ref << endl;
-
-    tukar3(a, b, c);
-
-    cout << "\nSetelah tukar3 dipanggil:" << endl;
-    cout << "a = " << a << ", b = " << b << ", c = " << c << endl;
-
-    return 0;
-}
-```
-Sama dengan code sebelumnya memodifikasi dari codingan Guided sebelumnya agar bisa menukar nilai dari 3 variabel
-
-#### Output
-<img width="1425" height="317" alt="image" src="https://github.com/user-attachments/assets/19477cbc-d319-4d66-ada1-1d319b85c88c" />
-
-#### Full screenshot
-<img width="1919" height="1015" alt="image" src="https://github.com/user-attachments/assets/b2ceab4a-5be0-43d8-b13f-f82b04de565a" />
-
-
-
-
-### 3. [Buatlah program yang dapat melakukan operasi penjumlahan, pengurangan, dan perkalian matriks 3x3]
+### 3. Tukar Array
 
 ```C++
 #include <iostream>
 using namespace std;
 
-int cariMinimum(int arr[], int n) {
-    int min = arr[0];
-    for (int i = 1; i < n; i++) {
-        if (arr[i] < min) {
-            min = arr[i];
+void tampil(int arr[3][3], string nama) {
+    cout << "Array " << nama << ":\n";
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            cout << arr[i][j] << " ";
         }
+        cout << endl;
     }
-    return min;
+    cout << endl;
 }
 
-int cariMaksimum(int arr[], int n) {
-    int maks = arr[0];
-    for (int i = 1; i < n; i++) {
-        if (arr[i] > maks) {
-            maks = arr[i];
+void tukarArray(int a[3][3], int b[3][3]) {
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            int temp = a[i][j];
+            a[i][j] = b[i][j];
+            b[i][j] = temp;
         }
     }
-    return maks;
 }
 
-float hitungRataRata(int arr[], int n) {
-    int jumlah = 0;
-    for (int i = 0; i < n; i++) {
-        jumlah += arr[i];
-    }
-    return (float)jumlah / n; 
+void tukarPtr(int* x, int* y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
 }
 
 int main() {
-    int arrA[10] = {11, 8, 5, 7, 12, 26, 3, 54, 33, 55};
-    int n = 10;
-    int pilihan;
+    int arr1[3][3] = {{3,3,3}, {3,3,3}, {3,3,3}};
+    int arr2[3][3] = {{4,4,4}, {4,4,4}, {4,4,4}};
+    int a = 100, b = 200;
+    int* ptr1 = &a;
+    int* ptr2 = &b;
 
-    do {
-        cout << "\n--- Menu Program Array ---\n";
-        cout << "1. Tampilkan isi array\n";
-        cout << "2. Cari nilai maksimum\n";
-        cout << "3. Cari nilai minimum\n";
-        cout << "4. Hitung nilai rata - rata\n";
-        cout << "Pilih: ";
-        cin >> pilihan;
+    tampil(arr1, "1");
+    tampil(arr2, "2");
 
-        switch (pilihan) {
-             case 1:
-                cout << "ARRAY = {";
-                for (int i = 0; i < n; i++) {
-                    cout << arrA[i];
-                    if (i < n - 1) cout << ", ";
-                }
-                cout << "}" << endl;
-                break;
-            case 2:
-                cout << "Nilai maksimum: " << cariMaksimum(arrA, n) << endl;
-                break;
-            case 3:
-                cout << "Nilai minimum: " << cariMinimum(arrA, n) << endl;
-                break;
-            case 4:
-                cout << "Nilai rata-rata: " << hitungRataRata(arrA, n) << endl;
-                break;
-            default:
-                cout << "-";
-        }
-    } while (pilihan != 5);
+    tukarArray(arr1, arr2);
+    tampil(arr1, "1");
+    tampil(arr2, "2");
+
+    cout << "Sebelum: a=" << a << " b=" << b << endl;
+    tukarPtr(ptr1, ptr2);
+    cout << "Sesudah: a=" << a << " b=" << b << endl;
 
     return 0;
 }
-
 ```
-Kode diatas adalah program aplikasi yang bisa memilih antara ke empat opsi yaitu menampilkan isi array, mencari nilai maksimum dan minimum, juga menghitung nilai rata-rata dari matriks yang ada pada soal yaitu {11, 8, 5, 7, 12, 26, 3, 54, 33, 55}.
+Program bekerja untuk menukar antara array a dan b dengan 2 buah pointer integer. 
 
 #### Output 
-<img width="1431" height="785" alt="image" src="https://github.com/user-attachments/assets/a25facc0-0aaf-42f4-a331-b76a68b3431a" />
+<img width="1265" height="554" alt="image" src="https://github.com/user-attachments/assets/9b538e4a-a86c-4d80-9024-28d3f75a118e" />
+
 
 #### Full Screenshot
-<img width="1919" height="1019" alt="image" src="https://github.com/user-attachments/assets/9124b734-b661-47d5-9403-d5ba2e5c3c8b" />
+<img width="1914" height="1020" alt="image" src="https://github.com/user-attachments/assets/3e448abe-5d26-46a7-a249-a6aed6fdb705" />
 
 ##
 
@@ -356,4 +279,8 @@ Kode diatas adalah program aplikasi yang bisa memilih antara ke empat opsi yaitu
 Modul 2 ini membahas lanjutan dasar pemrograman C++ yang berfokus pada penggunaan variabel, pointer, dan reference. Pointer diperkenalkan sebagai cara untuk mengakses alamat memori dan memanipulasi isi variabel secara langsung, sementara reference dijelaskan sebagai alternatif yang lebih sederhana dibandingkan pointer, terutama saat digunakan dalam parameter fungsi. Materi ini dilengkapi dengan contoh-contoh program sederhana seperti pertukaran nilai variabel menggunakan pointer maupun reference, sehingga mahasiswa dapat memahami perbedaan dan kegunaannya. Pada bagian akhir, disediakan latihan soal untuk memperkuat pemahaman konsep. Secara keseluruhan, modul ini menekankan pentingnya memahami cara kerja memori di C++ agar mahasiswa mampu menulis program yang lebih efisien dan efektif.
 
 ## Referensi
--
+"Introduction to Algorithms, 3rd Edition" (CLRS) oleh Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein.
+cppreference.com - Arrays
+GeeksforGeeks - Multidimensional Arrays in C/C++
+Tutorial C++ - C++ Multi-dimensional Arrays
+"Data Structures and Algorithms in Java" oleh Michael T. Goodrich, Roberto Tamassia, and Michael H. Goldwasser.
