@@ -472,216 +472,330 @@ int main(){
 
 ## Unguided 
 
-### 1. Buat program yang dapat menyimpan data mahasiswa (max. 10) ke dalam sebuah array dengan field nama, nim, uts, uas, tugas, dan nilai akhir. Nilai akhir diperoleh dari FUNGSI dengan rumus 0.3*uts+0.4*uas+0.3*tugas.
+### 1. Buatlah ADT Singly Linked list
 
+### Singlylist.cpp
 
 ```C++
+#include "Singlylist.h"
 #include <iostream>
 using namespace std;
 
-struct Mahasiswa {
-    string nama;
-    string nim;
-    float uts, uas, tugas, nilaiAkhir;
-};
-
-float hitungNilaiAkhir(float uts, float uas, float tugas) {
-    return (0.3 * uts) + (0.4 * uas) + (0.3 * tugas);
+void createList(List &L) {
+    L.First = NULL;
 }
 
-int main() {
-    Mahasiswa mhs[10];
-    int n;
-
-    cout << "Masukkan jumlah mahasiswa (maks 10): ";
-    cin >> n;
-    if (n > 10) n = 10;
-
-    for (int i = 0; i < n; i++) {
-        cout << "\nData mahasiswa ke-" << i + 1 << endl;
-        cout << "Nama   : ";
-        cin >> mhs[i].nama; 
-        cout << "NIM    : ";
-        cin >> mhs[i].nim;
-        cout << "UTS    : ";
-        cin >> mhs[i].uts;
-        cout << "UAS    : ";
-        cin >> mhs[i].uas;
-        cout << "Tugas  : ";
-        cin >> mhs[i].tugas;
-
-        mhs[i].nilaiAkhir = hitungNilaiAkhir(mhs[i].uts, mhs[i].uas, mhs[i].tugas);
-    }
-    
-    for (int i = 0; i < n; i++) {
-        cout << i + 1 << "\t" << mhs[i].nim << "\t" << mhs[i].nama 
-             << "\t\t" << mhs[i].nilaiAkhir << endl;
-    }
-
-    return 0;
-}
-```
-Kode diatas adalah program yang dapat digunakan untuk menghitung nilai rata rata dari data mahasiswa maks 10, dengan cara perulangan dan array yang menyimpan nim, nama, uts, uas, dan nilai akhir dengan ketentuan 0.3*uts+0.4*uas+0.3*tugas.
-
-#### Output
-<img width="533" height="407" alt="image" src="https://github.com/user-attachments/assets/bc16b72b-1963-48a1-bcd1-263b0357c1df" />
-
-
-#### Full Screenshot
-<img width="1919" height="1020" alt="image" src="https://github.com/user-attachments/assets/ecafa166-8b4c-47df-97c0-b094f94ab791" />
-
-
-
-### 2. Buat data ADT
-
-### pelajaran.cpp
-
-```C++
-#include "pelajaran.h"
-
-pelajaran create_pelajaran(string nama, string kode) {
-    pelajaran p;
-    p.namaMapel = nama;
-    p.kodeMapel = kode;
-    return p;
+address alokasi(infotype x) {
+    address P = new ElmList;
+    P->info = x;
+    P->next = NULL;
+    return P;
 }
 
-void tampil_pelajaran(pelajaran pel) {
-    cout << "nama pelajaran : " << pel.namaMapel << endl;
-    cout << "nilai : " << pel.kodeMapel << endl;
-}
-```
-### Full Code ss
-<img width="1919" height="1018" alt="image" src="https://github.com/user-attachments/assets/cb1bb38e-7132-4aa7-89a5-0b3ee67e4160" />
-
-
-### pelajaran.h
-```C++
-#ifndef PELAJARAN_H
-#define PELAJARAN_H
-#include <iostream>
-using namespace std;
-
-struct pelajaran {
-    string namaMapel;
-    string kodeMapel;
-};
-
-pelajaran create_pelajaran(string nama, string kode);
-void tampil_pelajaran(pelajaran pel);
-
-#endif
-```
-### Full code ss
-<img width="1917" height="1020" alt="image" src="https://github.com/user-attachments/assets/54e68dcf-35c5-4018-afa1-83021219a28d" />
-
-
-### main.cpp
-```C++
-#include <iostream>
-#include <string>
-
-using namespace std;
-
-struct Pelajaran {
-    string nama;
-    string kode;
-};
-
-Pelajaran create_pelajaran(const string& nama, const string& kode) {
-    return Pelajaran{nama, kode};
+void dealokasi(address &P) {
+    delete P;
+    P = NULL;
 }
 
-void tampil_pelajaran(const Pelajaran& p) {
-    cout << "Nama: " << p.nama << "\nKode: " << p.kode << '\n';
-}
-
-int main() {
-    string namapel = "Struktur Data";
-    string kodepel = "STD";
-
-    auto pel = create_pelajaran(namapel, kodepel);
-    tampil_pelajaran(pel);
-
-    return 0;
-}
-```
-Kode diatas adalah program ADT yang memiliki 3 file yang saling ber relasi .
-
-#### Output:
-<img width="835" height="163" alt="image" src="https://github.com/user-attachments/assets/a19c2919-91ab-4d66-82c0-6d70c658a5b8" />
-
-#### Full code Screenshot:
-<img width="1919" height="1020" alt="image" src="https://github.com/user-attachments/assets/7193da2c-d205-4480-a14f-2fe6d771c1d1" />
-
-
-### 3. Tukar Array
-
-```C++
-#include <iostream>
-using namespace std;
-
-void tampil(int arr[3][3], string nama) {
-    cout << "Array " << nama << ":\n";
-    for(int i = 0; i < 3; i++) {
-        for(int j = 0; j < 3; j++) {
-            cout << arr[i][j] << " ";
+void printInfo(List L) {
+    address P = L.First;
+    while (P != NULL) {
+        if (P->info == 0) {
+            cout << "0 ";
+        } else {
+            cout << P->info << " ";
         }
-        cout << endl;
+        P = P->next;
     }
     cout << endl;
 }
 
-void tukarArray(int a[3][3], int b[3][3]) {
-    for(int i = 0; i < 3; i++) {
-        for(int j = 0; j < 3; j++) {
-            int temp = a[i][j];
-            a[i][j] = b[i][j];
-            b[i][j] = temp;
-        }
+void insertFirst(List &L, address P) {
+    if (L.First == NULL) {
+        L.First = P;
+    } else {
+        P->next = L.First;
+        L.First = P;
     }
 }
+```
 
-void tukarPtr(int* x, int* y) {
-    int temp = *x;
-    *x = *y;
-    *y = temp;
-}
+### Singlylist.h
+```C++
+#ifndef SINGLYLIST_H
+#define SINGLYLIST_H
+
+typedef int infotype;
+
+struct ElmList {
+    infotype info;
+    ElmList* next;
+};
+
+typedef ElmList* address;
+
+struct List {
+    address First;
+};
+
+void createList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void printInfo(List L);
+void insertFirst(List &L, address P);
+
+#endif
+```
+
+### main.cpp
+```C++
+#include "Singlylist.h"
+#include <iostream>
+using namespace std;
 
 int main() {
-    int arr1[3][3] = {{3,3,3}, {3,3,3}, {3,3,3}};
-    int arr2[3][3] = {{4,4,4}, {4,4,4}, {4,4,4}};
-    int a = 100, b = 200;
-    int* ptr1 = &a;
-    int* ptr2 = &b;
-
-    tampil(arr1, "1");
-    tampil(arr2, "2");
-
-    tukarArray(arr1, arr2);
-    tampil(arr1, "1");
-    tampil(arr2, "2");
-
-    cout << "Sebelum: a=" << a << " b=" << b << endl;
-    tukarPtr(ptr1, ptr2);
-    cout << "Sesudah: a=" << a << " b=" << b << endl;
-
+    List L;
+    address P1, P2, P3, P4, P5;
+    createList(L);
+    
+    P1 = alokasi(2);
+    insertFirst(L, P1);
+    
+    P2 = alokasi(0);
+    insertFirst(L, P2);
+    
+    P3 = alokasi(8);
+    insertFirst(L, P3);
+    
+    P4 = alokasi(12);
+    insertFirst(L, P4);
+    
+    P5 = alokasi(9);
+    insertFirst(L, P5);
+    
+    printInfo(L);
+    
     return 0;
 }
 ```
-Program bekerja untuk menukar antara array a dan b dengan 2 buah pointer integer. 
 
-#### Output 
-<img width="1265" height="554" alt="image" src="https://github.com/user-attachments/assets/9b538e4a-a86c-4d80-9024-28d3f75a118e" />
+Program ini menerapkan struktur data Single Linked List dalam C++. Linked list terdiri dari serangkaian elemen (node) yang saling terhubung melalui pointer, dimana setiap elemen menyimpan data integer dan pointer ke elemen berikutnya.
+
+#### Output
+<img width="904" height="107" alt="image" src="https://github.com/user-attachments/assets/975de5f4-4136-46a6-aed3-d7961b9c868b" />
+
 
 
 #### Full Screenshot
-<img width="1914" height="1020" alt="image" src="https://github.com/user-attachments/assets/3e448abe-5d26-46a7-a249-a6aed6fdb705" />
+<img width="1911" height="1025" alt="image" src="https://github.com/user-attachments/assets/2a77b683-c1ab-4980-8e43-f8818ab0683c" />
 
-##
 
+
+### 2. Penghapusan 
+
+### singlylist.cpp
+
+```C++
+#include "singlylist.h"
+#include <iostream>
+using namespace std;
+
+void createList(List &L) {
+    L.First = NULL;
+}
+
+address alokasi(infotype x) {
+    address P = new ElmList;
+    P->info = x;
+    P->next = NULL;
+    return P;
+}
+
+void dealokasi(address &P) {
+    delete P;
+    P = NULL;
+}
+
+void printInfo(List L) {
+    address P = L.First;
+    while (P != NULL) {
+        if (P->info == 0) {
+            cout << "0 ";
+        } else {
+            cout << P->info << " ";
+        }
+        P = P->next;
+    }
+    cout << endl;
+}
+
+void insertFirst(List &L, address P) {
+    if (L.First == NULL) {
+        L.First = P;
+    } else {
+        P->next = L.First;
+        L.First = P;
+    }
+}
+
+// Implementasi fungsi-fungsi penghapusan
+void deleteFirst(List &L, address &P) {
+    if (L.First == NULL) {
+        P = NULL;
+    } else {
+        P = L.First;
+        L.First = L.First->next;
+        P->next = NULL;
+    }
+}
+
+void deleteLast(List &L, address &P) {
+    if (L.First == NULL) {
+        P = NULL;
+    } else if (L.First->next == NULL) {
+        P = L.First;
+        L.First = NULL;
+    } else {
+        address Q = L.First;
+        while (Q->next->next != NULL) {
+            Q = Q->next;
+        }
+        P = Q->next;
+        Q->next = NULL;
+    }
+}
+
+void deleteAfter(List &L, address Prec, address &P) {
+    if (Prec == NULL || Prec->next == NULL) {
+        P = NULL;
+    } else {
+        P = Prec->next;
+        Prec->next = P->next;
+        P->next = NULL;
+    }
+}
+
+int nbList(List L) {
+    int count = 0;
+    address P = L.First;
+    while (P != NULL) {
+        count++;
+        P = P->next;
+    }
+    return count;
+}
+
+void deleteList(List &L) {
+    address P;
+    while (L.First != NULL) {
+        deleteFirst(L, P);
+        dealokasi(P);
+    }
+}
+```
+### singlylist.h
+
+```C++
+#ifndef SINGLYLIST_H
+#define SINGLYLIST_H
+
+typedef int infotype;
+
+struct ElmList {
+    infotype info;
+    ElmList* next;
+};
+
+typedef ElmList* address;
+
+struct List {
+    address First;
+};
+
+void createList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+void printInfo(List L);
+void insertFirst(List &L, address P);
+
+// Tambahkan deklarasi fungsi-fungsi penghapusan
+void deleteFirst(List &L, address &P);
+void deleteLast(List &L, address &P);
+void deleteAfter(List &L, address Prec, address &P);
+int nbList(List L);
+void deleteList(List &L);
+
+#endif
+```
+### main.cpp
+
+```C++
+#include "singlylist.h"
+#include <iostream>
+using namespace std;
+
+int main() {
+    List L;
+    address P1, P2, P3, P4, P5;
+    address deletedNode;
+    
+    createList(L);
+    
+    // Membuat list awal: 9, 12, 8, 0, 2
+    P1 = alokasi(2);
+    insertFirst(L, P1);
+    
+    P2 = alokasi(0);
+    insertFirst(L, P2);
+    
+    P3 = alokasi(8);
+    insertFirst(L, P3);
+    
+    P4 = alokasi(12);
+    insertFirst(L, P4);
+    
+    P5 = alokasi(9);
+    insertFirst(L, P5);
+    
+    // Menghapus node 9 (first) menggunakan deleteFirst()
+    deleteFirst(L, deletedNode);
+    dealokasi(deletedNode);
+    
+    // Menghapus node 2 (last) menggunakan deleteLast()
+    deleteLast(L, deletedNode);
+    dealokasi(deletedNode);
+    
+    // Menghapus node 8 menggunakan deleteAfter()
+    // Mencari node sebelum 8 (yaitu node 12)
+    address Prec = L.First; // 12 adalah first sekarang
+    deleteAfter(L, Prec, deletedNode);
+    dealokasi(deletedNode);
+    
+    // Output yang diharapkan
+    printInfo(L);
+    cout << "Jumlah node : " << nbList(L) << endl << endl;
+    
+    // Menghapus seluruh list
+    deleteList(L);
+    cout << "- List Berhasil Terhapus -" << endl;
+    cout << "Jumlah node : " << nbList(L) << endl;
+    
+    return 0;
+}
+```
+Program membuat list berisi lima nilai: 9, 12, 8, 0, 2 dan dilakukan penghapusan - menghapus elemen pertama (9), elemen terakhir (2), dan elemen di tengah (8) - sehingga tersisa dua elemen: 12 dan 0. Nilai 0 ditampilkan sebagai karakter '0' sesuai spesifikasi. Terakhir, seluruh list dihapus hingga kosong. Program ini menggunakan operasi dasar linked list seperti penyisipan dan penghapusan
+
+### Output 
+<img width="852" height="154" alt="image" src="https://github.com/user-attachments/assets/83d68674-943b-4a91-abae-9018e6c7f4de" />
+
+
+### Full Code ss 
+<img width="1919" height="1015" alt="image" src="https://github.com/user-attachments/assets/8146348e-fafe-4ed3-b5e3-650361c8e3e6" />
+
+
+###
 ## Kesimpulan 
-Modul 2 ini membahas lanjutan dasar pemrograman C++ yang berfokus pada penggunaan variabel, pointer, dan reference. Pointer diperkenalkan sebagai cara untuk mengakses alamat memori dan memanipulasi isi variabel secara langsung, sementara reference dijelaskan sebagai alternatif yang lebih sederhana dibandingkan pointer, terutama saat digunakan dalam parameter fungsi. Materi ini dilengkapi dengan contoh-contoh program sederhana seperti pertukaran nilai variabel menggunakan pointer maupun reference, sehingga mahasiswa dapat memahami perbedaan dan kegunaannya. Pada bagian akhir, disediakan latihan soal untuk memperkuat pemahaman konsep. Secara keseluruhan, modul ini menekankan pentingnya memahami cara kerja memori di C++ agar mahasiswa mampu menulis program yang lebih efisien dan efektif.
+Linked List (Senarai Berantai) adalah implementasi konkret. Ini adalah salah satu cara spesifik (struktur data) untuk benar-benar menyimpan data di memori guna mewujudkan sebuah ADT. Linked list menggunakan sistem node (simpul) yang saling terhubung melalui pointer (penunjuk alamat memori).
 
 ## Referensi
 Malik, D. S. (2021). Data structures using C++ (3rd ed.). Cengage Learning.
