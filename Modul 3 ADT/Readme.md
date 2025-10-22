@@ -1,9 +1,11 @@
-# <h1 align="center">Laporan Praktikum Modul Singly linked list (Bagian pertama) (4)</h1>
+# <h1 align="center">Laporan Praktikum Modul ADT (3)</h1>
 <p align="center">Muhammad Fathir Al Ghozi</p>
 
 ## Dasar Teori
-### Linked list
-Senarai berantai (linked list) adalah salah satu struktur data linear yang fundamental dalam ilmu komputer. Berbeda dengan array yang menyimpan elemen-elemennya dalam blok memori yang berurutan (kontigu), linked list terdiri dari kumpulan elemen data yang disebut simpul (node) yang tersebar di berbagai lokasi memori (Malik, 2021).
+### ADT
+Abstract Data Type (ADT) atau Tipe Data Abstrak adalah model matematis atau spesifikasi konseptual untuk sekumpulan data (nilai) beserta kumpulan operasi yang dapat dilakukan terhadap data tersebut (Aho et al., 1983).
+###
+Konsep fundamental dari ADT adalah abstraksi (abstraction) dan penyembunyian informasi (information hiding atau encapsulation). ADT berfokus pada pendefinisian apa yang dapat dilakukan oleh sebuah tipe data (yaitu, antarmuka atau interface publiknya), bukan bagaimana operasi tersebut diimplementasikan secara internal (Weiss, 2014).
 
 ## Guided 1
 
@@ -277,5 +279,8 @@ Program bekerja untuk menukar antara array a dan b dengan 2 buah pointer integer
 Modul 2 ini membahas lanjutan dasar pemrograman C++ yang berfokus pada penggunaan variabel, pointer, dan reference. Pointer diperkenalkan sebagai cara untuk mengakses alamat memori dan memanipulasi isi variabel secara langsung, sementara reference dijelaskan sebagai alternatif yang lebih sederhana dibandingkan pointer, terutama saat digunakan dalam parameter fungsi. Materi ini dilengkapi dengan contoh-contoh program sederhana seperti pertukaran nilai variabel menggunakan pointer maupun reference, sehingga mahasiswa dapat memahami perbedaan dan kegunaannya. Pada bagian akhir, disediakan latihan soal untuk memperkuat pemahaman konsep. Secara keseluruhan, modul ini menekankan pentingnya memahami cara kerja memori di C++ agar mahasiswa mampu menulis program yang lebih efisien dan efektif.
 
 ## Referensi
-Malik, D. S. (2021). Data structures using C++ (3rd ed.). Cengage Learning.
+Aho, A. V., Hopcroft, J. E., & Ullman, J. D. (1983). Data structures and algorithms. Addison-Wesley.
+###
 Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2022). Introduction to algorithms (4th ed.). MIT Press.
+###
+Weiss, M. A. (2014). Data structures and algorithm analysis in C++ (4th ed.). Pearson.
