@@ -3,8 +3,8 @@
 using namespace std;
 
 int main() {
-    linkedList List; //nama struct disamakan (linkedList)
-    address nodeA = Nil, nodeB = Nil, nodeC = Nil, nodeD = Nil, nodeE = Nil; //semua diinisialisasi Nil
+    linkedList List;
+    address nodeA = Nil, nodeB = Nil, nodeC = Nil, nodeD = Nil, nodeE = Nil;
     createList(List);
 
     dataMahasiswa mhs;
