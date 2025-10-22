@@ -276,7 +276,7 @@ Program bekerja untuk menukar antara array a dan b dengan 2 buah pointer integer
 ##
 
 ## Kesimpulan 
-Modul 2 ini membahas lanjutan dasar pemrograman C++ yang berfokus pada penggunaan variabel, pointer, dan reference. Pointer diperkenalkan sebagai cara untuk mengakses alamat memori dan memanipulasi isi variabel secara langsung, sementara reference dijelaskan sebagai alternatif yang lebih sederhana dibandingkan pointer, terutama saat digunakan dalam parameter fungsi. Materi ini dilengkapi dengan contoh-contoh program sederhana seperti pertukaran nilai variabel menggunakan pointer maupun reference, sehingga mahasiswa dapat memahami perbedaan dan kegunaannya. Pada bagian akhir, disediakan latihan soal untuk memperkuat pemahaman konsep. Secara keseluruhan, modul ini menekankan pentingnya memahami cara kerja memori di C++ agar mahasiswa mampu menulis program yang lebih efisien dan efektif.
+Abstract Data Type (ADT) / Tipe Data Abstrak adalah konsep atau cetak biru (blueprint). ADT mendefinisikan apa yang bisa dilakukan oleh sekumpulan data (operasinya) dan perilakunya, tetapi menyembunyikan bagaimana cara kerjanya secara internal. Contohnya adalah ADT Stack (Tumpukan) yang memiliki operasi push dan pop.
 
 ## Referensi
 Aho, A. V., Hopcroft, J. E., & Ullman, J. D. (1983). Data structures and algorithms. Addison-Wesley.
