@@ -1,13 +1,13 @@
-# <h1 align="center">Laporan Praktikum Modul Abstract Data Type (ADT) (3)</h1>
+# <h1 align="center">Laporan Praktikum Modul ADT (3)</h1>
 <p align="center">Muhammad Fathir Al Ghozi</p>
 
 ## Dasar Teori
 ### ADT
-Abstract Data Type (ADT) adalah sebuah model konseptual atau blueprint untuk tipe data yang didefinisikan oleh perilakunya (operasi yang bisa dilakukan) dari sudut pandang pengguna, bukan oleh implementasinya (bagaimana operasi itu dijalankan).
-Abstraksi (Abstraction): Ini adalah prinsip menyembunyikan detail implementasi yang kompleks dan hanya menunjukkan fungsionalitas yang esensial kepada pengguna. ADT adalah bentuk abstraksi data. Kita fokus pada perilaku objek data tanpa terbebani oleh cara kerjanya di level rendah.
-Enkapsulasi (Encapsulation) / Information Hiding: Ini adalah mekanisme untuk membungkus data dan metode (operasi) yang bekerja pada data tersebut menjadi satu unit tunggal. ADT secara teoretis mengenkapsulasi data dan membatasi akses langsung ke dalamnya. Pengguna hanya bisa memanipulasi data melalui operasi yang telah ditentukan secara publik. Hal ini mencegah data dari kerusakan yang tidak disengaja dan menjaga integritasnya.
+Abstract Data Type (ADT) atau Tipe Data Abstrak adalah model matematis atau spesifikasi konseptual untuk sekumpulan data (nilai) beserta kumpulan operasi yang dapat dilakukan terhadap data tersebut (Aho et al., 1983).
+###
+Konsep fundamental dari ADT adalah abstraksi (abstraction) dan penyembunyian informasi (information hiding atau encapsulation). ADT berfokus pada pendefinisian apa yang dapat dilakukan oleh sebuah tipe data (yaitu, antarmuka atau interface publiknya), bukan bagaimana operasi tersebut diimplementasikan secara internal (Weiss, 2014).
 
-## Guided 
+## Guided 1
 
 ### 1. mahasiswa.cpp 
 
@@ -276,11 +276,11 @@ Program bekerja untuk menukar antara array a dan b dengan 2 buah pointer integer
 ##
 
 ## Kesimpulan 
-Modul 2 ini membahas lanjutan dasar pemrograman C++ yang berfokus pada penggunaan variabel, pointer, dan reference. Pointer diperkenalkan sebagai cara untuk mengakses alamat memori dan memanipulasi isi variabel secara langsung, sementara reference dijelaskan sebagai alternatif yang lebih sederhana dibandingkan pointer, terutama saat digunakan dalam parameter fungsi. Materi ini dilengkapi dengan contoh-contoh program sederhana seperti pertukaran nilai variabel menggunakan pointer maupun reference, sehingga mahasiswa dapat memahami perbedaan dan kegunaannya. Pada bagian akhir, disediakan latihan soal untuk memperkuat pemahaman konsep. Secara keseluruhan, modul ini menekankan pentingnya memahami cara kerja memori di C++ agar mahasiswa mampu menulis program yang lebih efisien dan efektif.
+Abstract Data Type (ADT) / Tipe Data Abstrak adalah konsep atau cetak biru (blueprint). ADT mendefinisikan apa yang bisa dilakukan oleh sekumpulan data (operasinya) dan perilakunya, tetapi menyembunyikan bagaimana cara kerjanya secara internal. Contohnya adalah ADT Stack (Tumpukan) yang memiliki operasi push dan pop.
 
 ## Referensi
-"Introduction to Algorithms, 3rd Edition" (CLRS) oleh Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein.
-cppreference.com - Arrays
-GeeksforGeeks - Multidimensional Arrays in C/C++
-Tutorial C++ - C++ Multi-dimensional Arrays
-"Data Structures and Algorithms in Java" oleh Michael T. Goodrich, Roberto Tamassia, and Michael H. Goldwasser.
+Aho, A. V., Hopcroft, J. E., & Ullman, J. D. (1983). Data structures and algorithms. Addison-Wesley.
+###
+Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2022). Introduction to algorithms (4th ed.). MIT Press.
+###
+Weiss, M. A. (2014). Data structures and algorithm analysis in C++ (4th ed.). Pearson.
