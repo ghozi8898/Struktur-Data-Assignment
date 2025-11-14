@@ -19,7 +19,6 @@ struct List {
     address First;
 };
 
-// Prototypes
 void CreateList(List &L);
 address alokasi(infotype x);
 void dealokasi(address &P);
@@ -28,4 +27,4 @@ void insertFirst(List &L, address P);
 address findElm(const List &L, infotype x);
 int sumInfo(const List &L);
 
-#endif // SINGLYLIST_H
+#endif
