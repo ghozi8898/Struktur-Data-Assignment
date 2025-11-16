@@ -18,4 +18,4 @@ infotype pop(Stack &S);
 void printInfo(const Stack &S);
 void balikStack(Stack &S);
 
-#endif /
+#endif 
