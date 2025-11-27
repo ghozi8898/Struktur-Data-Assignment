@@ -18,7 +18,7 @@ int main() {
 
         if (isNopolExist(L, x.nopol)) {
             cout << "nomor polisi sudah terdaftar\n\n";
-            --i; // ulangi iterasi tanpa menghitung input ini
+            --i;
             continue;
         }
 
@@ -36,7 +36,6 @@ int main() {
     cout << "\nDATA LIST (awal)\n\n";
     printInfo(L);
 
-    // -- contoh: cari elemen --
     cout << "Masukkan Nomor Polisi yang dicari : ";
     infotype key;
     cin >> key.nopol;
@@ -49,7 +48,6 @@ int main() {
         cout << "\nData tidak ditemukan.\n\n";
     }
 
-    // -- contoh: hapus elemen berdasarkan nopol --
     cout << "Masukkan Nomor Polisi yang akan dihapus : ";
     string delKey;
     cin >> delKey;
@@ -63,7 +61,6 @@ int main() {
     cout << "DATA LIST (setelah penghapusan)\n\n";
     printInfo(L);
 
-    // bersihkan sisa node sebelum keluar
     address P;
     while (L.First != nullptr) {
         deleteFirst(L, P);

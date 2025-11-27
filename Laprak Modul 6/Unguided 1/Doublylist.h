@@ -25,25 +25,20 @@ struct List {
     address Last;
 };
 
-// constructors / alloc
 void CreateList(List &L);
 address alokasi(const infotype &x);
 void dealokasi(address &P);
 
-// search / helper
 address findElm(List L, infotype x);
 bool isNopolExist(const List &L, const string &nopol);
 
-// insert / print
 void insertLast(List &L, address P);
 void printInfo(const List &L);
 
-// delete procedures
 void deleteFirst(List &L, address &P);
 void deleteLast(List &L, address &P);
 void deleteAfter(address Prec, address &P);
 
-// convenience wrapper
 bool deleteByNopol(List &L, const string &nopol);
 
 #endif
