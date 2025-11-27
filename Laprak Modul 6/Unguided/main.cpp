@@ -10,7 +10,6 @@ int main() {
     List L;
     CreateList(L);
 
-    // === INPUT DATA ===
     int countValid = 0;
 
     while (countValid < 3) {
@@ -26,28 +25,23 @@ int main() {
         cin >> x.thnBuat;
         cout << endl;
 
-        // Cegah input tidak valid
         if (!isValidInput(x)) {
             cout << "Input tidak valid, ulangi.\n\n";
             continue;   // tidak hitung data
         }
 
-        // Cek duplikasi SETELAH input lengkap
         if (findElm(L, x.nopol) != nullptr) {
             cout << "nomor polisi sudah terdaftar\n\n";
             continue;   // tidak hitung data
         }
 
-        // Input VALID → tambahkan data
         insertLast(L, alokasi(x));
         countValid++;
     }
 
-    // === TAMPILKAN LIST SETELAH D004 MASUK (DATA KE-4) ===
     cout << "DATA LIST 1\n\n";
     printInfo(L);
 
-    // === CARI ELEMENT ===
     string cari;
     cout << "Masukkan Nomor Polisi yang dicari : ";
     cin >> cari;
@@ -62,7 +56,6 @@ int main() {
         cout << "\nData tidak ditemukan.\n";
     }
 
-    // === DELETE DATA ===
     cout << "\nMasukkan Nomor Polisi yang akan dihapus : ";
     cin >> cari;
 
