@@ -10,7 +10,6 @@ struct Queue {
     int tail;
 };
 
-/* prototype */
 void CreateQueue(Queue &Q);
 bool isEmptyQueue(const Queue &Q);
 bool isFullQueue(const Queue &Q);
