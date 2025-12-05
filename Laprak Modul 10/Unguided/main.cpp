@@ -12,7 +12,7 @@ int main() {
     insertNode(root, 4);
     insertNode(root, 5);
     insertNode(root, 3);
-    insertNode(root, 6); // duplicate (akan diabaikan BST)
+    insertNode(root, 6);
     insertNode(root, 7);
 
     InOrder(root);

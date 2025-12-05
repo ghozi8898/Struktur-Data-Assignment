@@ -20,7 +20,6 @@ void insertNode(address &root, infotype x) {
     else if (x > root->info) {
         insertNode(root->right, x);
     }
-    // jika x == root->info → BST mengabaikan duplikat
 }
 
 void InOrder(address root) {
