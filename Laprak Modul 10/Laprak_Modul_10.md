@@ -4,8 +4,7 @@
 
 ## Dasar Teori
 ###
-Tree pada C++ adalah struktur data non-linear yang merepresentasikan hubungan hierarkis antara elemen-elemen. Tree terdiri dari node dengan satu node khusus sebagai root (akar) dan node-node lain sebagai anak (child), membentuk cabang-cabang subtree. Pada implementasinya, node biasanya berisi data dan dua pointer yang menunjuk ke anak kiri dan kanan, sehingga membentuk binary tree. Operasi utama pada tree adalah traversal, yaitu mengunjungi node dengan cara PreOrder (root-left-right), InOrder (left-root-right), dan PostOrder (left-right-root). Penambahan node biasanya dilakukan secara rekursif berdasarkan perbandingan nilai data agar tree tetap terstruktur secara urut.
-
+Tree pada C++ adalah struktur data non linear yang merepresentasikan hubungan terstruktur antara elemen-elemen. Tree terdiri dari node dengan satu node khusus sebagai root (akar) dan node-node lain sebagai anak (child), membentuk cabang-cabang subtree. Pada implementasinya, node biasanya berisi data dan dua pointer yang menunjuk ke anak kiri dan kanan, sehingga membentuk binary tree. Operasi utama pada tree adalah traversal, yaitu mengunjungi node dengan cara PreOrder (root-left-right), InOrder (left-root-right), dan PostOrder (left-right-root). Penambahan node biasanya dilakukan secara rekursif berdasarkan perbandingan nilai data agar tree tetap terstruktur secara urut.
 ## Guided 
 
 ### 1. bst.cpp
@@ -433,6 +432,10 @@ int main() {
 }
 ```
 #### Output
+<img width="613" height="702" alt="image" src="https://github.com/user-attachments/assets/90540214-9bab-4f8a-9572-5c62b261f12e" />
+#### Full screenshot
+<img width="1919" height="1022" alt="image" src="https://github.com/user-attachments/assets/20cb3380-292c-4765-901e-1db0355a44a4" />
+
 
 
 ## Unguided  1 
@@ -692,13 +695,22 @@ int main() {
 
 ###
 #### Penjelasan
+Kode ini membangun Binary Search Tree sederhana dengan tipe `address` (pointer ke `Node`) dan konstanta `Nil` sebagai `NULL`. Fungsi `alokasi(x)` membuat node baru di heap dengan nilai `info = x`; `insertNode(root, x)` menaruh `x` ke posisi yang benar secara rekursif: jika `x` lebih kecil ke cabang kiri, lebih besar ke cabang kanan, dan jika sama maka diabaikan (tidak menyisipkan duplikat). `InOrder(root)` melakukan traversal in-order (kiri → akar → kanan) sehingga mencetak nilai terurut menaik. `main()` mengisi pohon dengan beberapa nilai, memanggil `InOrder()` untuk menampilkan isi pohon, lalu mencetak tiga metrik yang dihitung secara rekursif oleh fungsi berikut.
+
+Fungsi pembantu untuk analisis pohon bersifat rekursif dan sederhana: `hitungNode(root)` mengembalikan jumlah node dengan rumus `1 + hitungNode(kiri) + hitungNode(kanan)`; `hitungTotal(root)` mengembalikan jumlah semua `info` di pohon dengan penjumlahan serupa; `hitungKedalaman(root, start)` mengukur kedalaman maksimum dengan mengoper parameter `start` sebagai kedalaman saat ini (pada pemanggilan awal biasanya `0`), mengembalikan `start-1` untuk subtree kosong dan mengambil maksimum antara kedalaman cabang kiri dan kanan untuk menentukan kedalaman pohon (jadi hasilnya adalah jarak maksimum dari akar ke daun menurut cara penghitungan berbasis `start`). Secara keseluruhan kode ini memanfaatkan alokasi dinamik, rekursi untuk operasi dasar BST, dan menghasilkan keluaran terurut plus metrik ringkas tanpa manajemen memori penghapusan (`delete`).
 
 
 ###
 ## Kesimpulan 
+Kesimpulan dari teori tree pada C++ adalah tree merupakan struktur data non linear yang bagus untuk mewakili data yang tertata dan digunakan secara luas dalam pemrograman untuk operasi search, insert, dan pengurutan data yang efisien. Implementasi tree di C++ biasanya memakai node dengan pointer anak kiri dan kanan, serta traversal sebagai operasi utama. Tree menggunakan cara yang efisien untuk mengelola dan mengakses data yang berstruktur.
 
-
-## Referensi[
-
+## Referensi
+Prasetyo, D. Tree C++.
+###
+https://kaazima.blogspot.com/2013/12/contoh-program-c-program-tree-c-sederhana.html
+###
+https://www.nblognlife.com/2014/12/tree-pada-c-tree-awal.html
 ###
 Iswahyudi, C. Konsep QUEUE Dalam Bahasa Pemrograman C++.
+###
+https://www.petanikode.com/cpp-struct/
