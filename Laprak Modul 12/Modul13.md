@@ -1047,48 +1047,284 @@ int main() {
 <img width="1919" height="1013" alt="image" src="https://github.com/user-attachments/assets/52f1fb34-4a79-49b8-910a-b0684effb069" />
 
 
+####
+## Penjelasan
+Kode program tersebut merupakan implementasi multilist (linked list bertingkat) yang terdiri dari list induk dan list anak, di mana setiap elemen pada list induk memiliki sebuah list anak tersendiri. Struktur ini menggunakan double linked list baik pada list induk maupun list anak, sehingga setiap node memiliki pointer next dan prev. Fungsi CreateList dan CreateListAnak digunakan untuk menginisialisasi list agar kosong. Proses alokasi (alokasi dan alokasiAnak) membuat node baru untuk induk maupun anak, sementara fungsi insertLast dan insertLastAnak menambahkan data ke akhir list. Pencarian data dilakukan menggunakan findElm, yang menelusuri list secara linear hingga data ditemukan.
+
+Selain operasi penyisipan, kode ini juga menyediakan operasi penghapusan data yang lengkap dan aman. Fungsi delP menghapus node induk sekaligus seluruh node anak yang dimilikinya, sehingga mencegah kebocoran memori. Penghapusan pada list anak dapat dilakukan secara spesifik menggunakan delPAnak. Fungsi printInfo dan printInfoAnak digunakan untuk menampilkan hubungan antara data induk dan data anak secara hierarkis. Secara keseluruhan, program ini menggambarkan bagaimana multilist dapat digunakan untuk merepresentasikan hubungan satu-ke-banyak (one-to-many) secara terstruktur dan efisien.
+
+###
+## Kesimpulan
+Implementasi multilist pada kode ini efektif untuk memodelkan data hierarkis yang memiliki relasi induk–anak, seperti kategori dan subkategori atau data utama dengan detail-detailnya. Dengan menggunakan double linked list, proses traversal dan penghapusan menjadi lebih fleksibel dan efisien. Kode ini menunjukkan penerapan struktur data lanjutan yang baik dalam mengelola data kompleks secara dinamis.
+
+
+
 ## Unguided 3
 ### 3. Unguided (circularlinkedlist)
 
 ### circularlist.cpp
 ```C++
+#include "circularlist.h"
+
+void createList(List &L) {
+    L.First = Nil;
+}
+
+address alokasi(infotype x) {
+    address P = new ElmList;
+    P->info = x;
+    P->next = P;  
+    return P;
+}
+
+void dealokasi(address &P) {
+    delete P;
+    P = Nil;
+}
+
+void insertFirst(List &L, address P) {
+    if (L.First == Nil) {
+        L.First = P;
+    } else {
+        address last = L.First;
+        while (last->next != L.First)
+            last = last->next;
+
+        P->next = L.First;
+        last->next = P;
+        L.First = P;
+    }
+}
+
+void insertLast(List &L, address P) {
+    if (L.First == Nil) {
+        insertFirst(L, P);
+    } else {
+        address last = L.First;
+        while (last->next != L.First)
+            last = last->next;
+
+        last->next = P;
+        P->next = L.First;
+    }
+}
+
+void insertAfter(List &L, address Prec, address P) {
+    P->next = Prec->next;
+    Prec->next = P;
+}
+
+void deleteFirst(List &L, address &P) {
+    if (L.First != Nil) {
+        address last = L.First;
+        while (last->next != L.First)
+            last = last->next;
+
+        P = L.First;
+        if (P->next == P) {
+            L.First = Nil;
+        } else {
+            L.First = P->next;
+            last->next = L.First;
+        }
+        P->next = Nil;
+    }
+}
+
+void deleteLast(List &L, address &P) {
+    if (L.First != Nil) {
+        address last = L.First;
+        address prec = Nil;
+
+        while (last->next != L.First) {
+            prec = last;
+            last = last->next;
+        }
+
+        P = last;
+        if (prec == Nil) {
+            L.First = Nil;
+        } else {
+            prec->next = L.First;
+        }
+        P->next = Nil;
+    }
+}
+
+void deleteAfter(List &L, address Prec, address &P) {
+    P = Prec->next;
+    Prec->next = P->next;
+    P->next = Nil;
+}
+
+address findElm(List L, infotype x) {
+    if (L.First == Nil) return Nil;
+
+    address P = L.First;
+    do {
+        if (P->info.nim == x.nim)
+            return P;
+        P = P->next;
+    } while (P != L.First);
+
+    return Nil;
+}
+
+void printInfo(List L) {
+    if (L.First == Nil) {
+        cout << "List kosong\n";
+        return;
+    }
+
+    address P = L.First;
+
+    cout << "Nama | NIM | JK | IPK\n";
+    cout << "----------------------\n";
+
+    do {
+        cout << P->info.nama << " | "
+             << P->info.nim << " | "
+             << P->info.jenis_kelamin << " | "
+             << P->info.ipk << endl;
+
+        P = P->next;
+    } while (P != L.First);
+}
+
 
 ```
 
 ### circularlist.h
 ```C++
 
+#ifndef CIRCULARLIST_H
+#define CIRCULARLIST_H
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+#define Nil NULL
+typedef bool boolean;
+
+struct mahasiswa {
+    string nama;
+    string nim;
+    char jenis_kelamin;
+    float ipk;
+};
+
+typedef mahasiswa infotype;
+typedef struct ElmList *address;
+
+struct ElmList {
+    infotype info;
+    address next;
+};
+
+struct List {
+    address First;
+};
+
+void createList(List &L);
+address alokasi(infotype x);
+void dealokasi(address &P);
+
+void insertFirst(List &L, address P);
+void insertAfter(List &L, address Prec, address P);
+void insertLast(List &L, address P);
+
+void deleteFirst(List &L, address &P);
+void deleteAfter(List &L, address Prec, address &P);
+void deleteLast(List &L, address &P);
+
+address findElm(List L, infotype x);
+void printInfo(List L);
+
+#endif
+
 ```
 
 ### main.cpp
 ```C++
+#include "circularlist.h"
+
+address createData(string nama, string nim, char jk, float ipk) {
+    infotype x;
+    x.nama = nama;
+    x.nim = nim;
+    x.jenis_kelamin = jk;
+    x.ipk = ipk;
+    return alokasi(x);
+}
+
+int main() {
+    List L;
+    createList(L);
+
+    address P1, P2;
+    infotype x;
+
+    P1 = createData("Celin","04",'P',4.0);
+    insertFirst(L,P1);
+
+    P1 = createData("Adam","06",'L',3.45);
+    insertLast(L,P1);
+
+    P1 = createData("Sukoco","02",'L',3.71);
+    insertFirst(L,P1);
+
+    P1 = createData("Hafiz","01",'L',3.3);
+    insertFirst(L,P1);
+
+    P1 = createData("Gendis","07",'P',3.75);
+    insertLast(L,P1);
+
+    x.nim = "07";
+    P1 = findElm(L,x);
+    P2 = createData("Thoriq","03",'L',3.5);
+    insertAfter(L,P1,P2);
+
+    x.nim = "02";
+    P1 = findElm(L,x);
+    P2 = createData("Fathir","08",'L',4);
+    insertAfter(L,P1,P2);
+
+    x.nim = "04";
+    P1 = findElm(L,x);
+    P2 = createData("Ela","05",'P',3.4);
+    insertAfter(L,P1,P2);
+
+    cout << "=== DATA MAHASISWA ===\n";
+    printInfo(L);
+
+    return 0;
+}
 
 ```
 #### Output
+<img width="1133" height="363" alt="image" src="https://github.com/user-attachments/assets/95bc94b7-5995-4da3-8acc-6f4d6286c896" />
 
 
 #### Full Screenshot
 
+<img width="1904" height="1025" alt="image" src="https://github.com/user-attachments/assets/73dca36e-1603-402b-ad30-e8860c0581d1" />
+
 
 
 ###
-#### Penjelasan
-Kode ini membangun Binary Search Tree sederhana dengan tipe `address` (pointer ke `Node`) dan konstanta `Nil` sebagai `NULL`. Fungsi `alokasi(x)` membuat node baru di heap dengan nilai `info = x`; `insertNode(root, x)` menaruh `x` ke posisi yang benar secara rekursif: jika `x` lebih kecil ke cabang kiri, lebih besar ke cabang kanan, dan jika sama maka diabaikan (tidak menyisipkan duplikat). `InOrder(root)` melakukan traversal in-order (kiri → akar → kanan) sehingga mencetak nilai terurut menaik. `main()` mengisi pohon dengan beberapa nilai, memanggil `InOrder()` untuk menampilkan isi pohon, lalu mencetak tiga metrik yang dihitung secara rekursif oleh fungsi berikut.
+## Penjelasan
+Kode di atas merupakan implementasi circular singly linked list untuk menyimpan data mahasiswa. Struktur data ini bersifat melingkar, artinya elemen terakhir akan menunjuk kembali ke elemen pertama. Fungsi createList menginisialisasi list agar kosong, sedangkan alokasi membuat node baru berisi data mahasiswa dan langsung mengarahkan pointer next ke dirinya sendiri agar konsisten dengan konsep circular list. Operasi penyisipan (insertFirst, insertLast, dan insertAfter) mengatur ulang pointer agar hubungan melingkar tetap terjaga, baik saat list masih kosong maupun sudah berisi beberapa node. Fungsi findElm digunakan untuk mencari data mahasiswa berdasarkan NIM dengan cara menelusuri list sampai kembali ke node pertama.
 
-Fungsi pembantu untuk analisis pohon bersifat rekursif dan sederhana: `hitungNode(root)` mengembalikan jumlah node dengan rumus `1 + hitungNode(kiri) + hitungNode(kanan)`; `hitungTotal(root)` mengembalikan jumlah semua `info` di pohon dengan penjumlahan serupa; `hitungKedalaman(root, start)` mengukur kedalaman maksimum dengan mengoper parameter `start` sebagai kedalaman saat ini (pada pemanggilan awal biasanya `0`), mengembalikan `start-1` untuk subtree kosong dan mengambil maksimum antara kedalaman cabang kiri dan kanan untuk menentukan kedalaman pohon (jadi hasilnya adalah jarak maksimum dari akar ke daun menurut cara penghitungan berbasis `start`). Secara keseluruhan kode ini memanfaatkan alokasi dinamik, rekursi untuk operasi dasar BST, dan menghasilkan keluaran terurut plus metrik ringkas tanpa manajemen memori penghapusan (`delete`).
-
+Selain penyisipan, kode ini juga menyediakan operasi penghapusan (deleteFirst, deleteLast, dan deleteAfter) yang memastikan struktur list tetap valid setelah node dihapus. Fungsi printInfo menampilkan seluruh data mahasiswa dengan melakukan traversal melingkar menggunakan perulangan do-while, sehingga setiap elemen hanya dicetak satu kali. Secara keseluruhan, kode ini menunjukkan penerapan circular linked list yang efisien untuk kasus data yang membutuhkan traversal berulang tanpa batas akhir yang jelas, seperti pada sistem antrian atau manajemen data dinamis.
 
 ###
 ## Kesimpulan 
-Kesimpulan dari teori tree pada C++ adalah tree merupakan struktur data non linear yang bagus untuk mewakili data yang tertata dan digunakan secara luas dalam pemrograman untuk operasi search, insert, dan pengurutan data yang efisien. Implementasi tree di C++ biasanya memakai node dengan pointer anak kiri dan kanan, serta traversal sebagai operasi utama. Tree menggunakan cara yang efisien untuk mengelola dan mengakses data yang berstruktur.
+Implementasi circular linked list pada kode ini efektif untuk menangani data mahasiswa yang bersifat dinamis dan membutuhkan proses penelusuran berulang. Struktur melingkar memungkinkan efisiensi dalam operasi insert dan delete tanpa memerlukan pointer tambahan ke elemen terakhir secara permanen. Dengan penerapan konsep pointer yang tepat, program ini menunjukkan bagaimana circular linked list dapat digunakan sebagai solusi struktur data yang fleksibel dan terstruktur dalam pengolahan data berbasis linked list.
 
 ## Referensi
-Prasetyo, D. Tree C++.
 ###
-https://kaazima.blogspot.com/2013/12/contoh-program-c-program-tree-c-sederhana.html
+
+Sahni, S. (2019). Data structures, algorithms, and applications in C++ (2nd ed.). McGraw-Hill Education.
 ###
-https://www.nblognlife.com/2014/12/tree-pada-c-tree-awal.html
-###
-Iswahyudi, C. Konsep QUEUE Dalam Bahasa Pemrograman C++.
-###
-https://www.petanikode.com/cpp-struct/
+Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2022). Introduction to algorithms (4th ed.). MIT Press.
