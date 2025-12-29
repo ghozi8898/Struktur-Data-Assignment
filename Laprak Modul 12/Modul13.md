@@ -1,5 +1,3 @@
-
-
 # <h1 align="center">Laporan Praktikum Modul Multi Linked list (13)</h1>
 <p align="center">Muhammad Fathir Al Ghozi</p>
 
