@@ -1,6 +1,5 @@
 #include "circularlist.h"
 
-/* fungsi create sesuai modul */
 address createData(string nama, string nim, char jk, float ipk) {
     infotype x;
     x.nama = nama;
@@ -17,34 +16,34 @@ int main() {
     address P1, P2;
     infotype x;
 
-    P1 = createData("Danu","04",'l',4.0);
+    P1 = createData("Celin","04",'P',4.0);
     insertFirst(L,P1);
 
-    P1 = createData("Fahmi","06",'l',3.45);
+    P1 = createData("Adam","06",'L',3.45);
     insertLast(L,P1);
 
-    P1 = createData("Bobi","02",'l',3.71);
+    P1 = createData("Sukoco","02",'L',3.71);
     insertFirst(L,P1);
 
-    P1 = createData("Ali","01",'l',3.3);
+    P1 = createData("Hafiz","01",'L',3.3);
     insertFirst(L,P1);
 
-    P1 = createData("Gita","07",'p',3.75);
+    P1 = createData("Gendis","07",'P',3.75);
     insertLast(L,P1);
 
     x.nim = "07";
     P1 = findElm(L,x);
-    P2 = createData("Cindi","03",'p',3.5);
+    P2 = createData("Thoriq","03",'L',3.5);
     insertAfter(L,P1,P2);
 
     x.nim = "02";
     P1 = findElm(L,x);
-    P2 = createData("Hilmi","08",'p',3.3);
+    P2 = createData("Fathir","08",'L',4);
     insertAfter(L,P1,P2);
 
     x.nim = "04";
     P1 = findElm(L,x);
-    P2 = createData("Eli","05",'p',3.4);
+    P2 = createData("Ela","05",'P',3.4);
     insertAfter(L,P1,P2);
 
     cout << "=== DATA MAHASISWA ===\n";

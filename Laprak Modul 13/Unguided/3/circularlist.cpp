@@ -1,24 +1,21 @@
 #include "circularlist.h"
 
-/* ===== CREATE ===== */
 void createList(List &L) {
     L.First = Nil;
 }
 
-/* ===== ALOKASI ===== */
 address alokasi(infotype x) {
     address P = new ElmList;
     P->info = x;
-    P->next = P;   // circular
+    P->next = P;  
     return P;
 }
 
 void dealokasi(address &P) {
     delete P;
     P = Nil;
-}
+}   
 
-/* ===== INSERT ===== */
 void insertFirst(List &L, address P) {
     if (L.First == Nil) {
         L.First = P;
@@ -51,7 +48,6 @@ void insertAfter(List &L, address Prec, address P) {
     Prec->next = P;
 }
 
-/* ===== DELETE ===== */
 void deleteFirst(List &L, address &P) {
     if (L.First != Nil) {
         address last = L.First;
@@ -95,7 +91,6 @@ void deleteAfter(List &L, address Prec, address &P) {
     P->next = Nil;
 }
 
-/* ===== FIND ===== */
 address findElm(List L, infotype x) {
     if (L.First == Nil) return Nil;
 
@@ -109,7 +104,6 @@ address findElm(List L, infotype x) {
     return Nil;
 }
 
-/* ===== PRINT ===== */
 void printInfo(List L) {
     if (L.First == Nil) {
         cout << "List kosong\n";
@@ -117,11 +111,17 @@ void printInfo(List L) {
     }
 
     address P = L.First;
+
+    cout << "Nama | NIM | JK | IPK\n";
+    cout << "----------------------\n";
+
     do {
         cout << P->info.nama << " | "
              << P->info.nim << " | "
              << P->info.jenis_kelamin << " | "
              << P->info.ipk << endl;
+
         P = P->next;
     } while (P != L.First);
 }
+

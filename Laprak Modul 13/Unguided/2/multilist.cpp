@@ -1,6 +1,5 @@
 #include "multilist.h"
 
-/* ===== CEK KOSONG ===== */
 boolean ListEmpty(listinduk L) {
     return (L.first == Nil);
 }
@@ -9,7 +8,6 @@ boolean ListEmptyAnak(listanak L) {
     return (L.first == Nil);
 }
 
-/* ===== CREATE ===== */
 void CreateList(listinduk &L) {
     L.first = Nil;
     L.last  = Nil;
@@ -20,7 +18,6 @@ void CreateListAnak(listanak &L) {
     L.last  = Nil;
 }
 
-/* ===== ALOKASI ===== */
 address alokasi(infotypeinduk X) {
     address P = new elemen_list_induk;
     if (P != Nil) {
@@ -50,7 +47,6 @@ void dealokasiAnak(address_anak P) {
     delete P;
 }
 
-/* ===== FIND ===== */
 address findElm(listinduk L, infotypeinduk X) {
     address P = L.first;
     while (P != Nil) {
@@ -69,7 +65,6 @@ address_anak findElm(listanak L, infotypeanak X) {
     return Nil;
 }
 
-/* ===== INSERT INDUK ===== */
 void insertFirst(listinduk &L, address P) {
     if (ListEmpty(L)) {
         L.first = L.last = P;
@@ -90,7 +85,6 @@ void insertLast(listinduk &L, address P) {
     }
 }
 
-/* ===== INSERT ANAK ===== */
 void insertFirstAnak(listanak &L, address_anak P) {
     if (ListEmptyAnak(L)) {
         L.first = L.last = P;
@@ -111,7 +105,6 @@ void insertLastAnak(listanak &L, address_anak P) {
     }
 }
 
-/* ===== DELETE INDUK ===== */
 void delFirst(listinduk &L, address &P) {
     P = L.first;
     if (P != Nil) {
@@ -159,7 +152,6 @@ void delP(listinduk &L, infotypeinduk X) {
     dealokasi(P);
 }
 
-/* ===== DELETE ANAK ===== */
 void delFirstAnak(listanak &L, address_anak &P) {
     P = L.first;
     if (P != Nil) {

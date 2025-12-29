@@ -8,7 +8,6 @@ using namespace std;
 #define Nil NULL
 typedef bool boolean;
 
-/* ===== INFOTYPE ===== */
 struct mahasiswa {
     string nama;
     string nim;
@@ -19,7 +18,6 @@ struct mahasiswa {
 typedef mahasiswa infotype;
 typedef struct ElmList *address;
 
-/* ===== STRUKTUR ===== */
 struct ElmList {
     infotype info;
     address next;
@@ -29,7 +27,6 @@ struct List {
     address First;
 };
 
-/* ===== OPERASI ===== */
 void createList(List &L);
 address alokasi(infotype x);
 void dealokasi(address &P);
