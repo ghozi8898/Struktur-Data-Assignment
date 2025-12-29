@@ -3,6 +3,7 @@
 
 ## Dasar Teori
 ###
+Circular linked list dan multi linked list merupakan pengembangan dari struktur data linked list yang digunakan untuk mengelola data dinamis secara efisien. Pada circular linked list, elemen terakhir tidak bernilai NULL melainkan menunjuk kembali ke elemen pertama, sehingga membentuk struktur melingkar yang memungkinkan traversal berulang tanpa batas akhir dan cocok untuk aplikasi seperti penjadwalan dan antrian berulang. Sementara itu, multi linked list (multilist) digunakan untuk merepresentasikan hubungan hierarkis atau relasi satu-ke-banyak (one-to-many), di mana setiap node induk dapat memiliki satu atau lebih list anak yang berdiri sendiri. Struktur ini banyak digunakan untuk pemodelan data kompleks seperti struktur organisasi, relasi database, dan representasi graf sederhana, karena mampu mengelompokkan data secara terstruktur dan fleksibel dengan tetap mempertahankan efisiensi dalam operasi penyisipan, pencarian, dan penghapusan.
 
 ## Guided 
 
